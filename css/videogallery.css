@@ -1,0 +1,32 @@
+#info {
+	height: 662px;
+	overflow: auto;
+}
+
+#info img {
+    width: 120px;
+    height: 80px;
+    padding: 3px;
+}
+
+#info img:hover {
+    -webkit-filter: blur(1px);
+}
+
+#paginationdiv {
+    text-align: center;
+    padding-bottom: 20px;
+    margin-top: -40px;
+}
+
+#paginationdiv p {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.pager {
+    text-align: center;
+    margin: 0;
+    font-weight: bold;
+}

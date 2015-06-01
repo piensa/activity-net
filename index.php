@@ -1,3 +1,8 @@
+<?php
+  require ('classes/videos.class.php');
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +20,8 @@
     <link href="css/prettyPhoto.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
     <link href="css/responsive.css" rel="stylesheet">
+    <link href="css/tree.css" rel="stylesheet">
+    <link href="css/videogallery.css" rel="stylesheet">    
     <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
     <!--[if lt IE 9]>
@@ -86,48 +93,33 @@
     <section id="explore">
         <div class="container">
             <div class="row">
-                <div class="col-sm-12 col-md-8 wow fadeInLeft">
-                    <div class="col-md-3" id="video">video</div>
-                    <div class="col-md-3" id="video">video</div>
-                    <div class="col-md-3" id="video">video</div>
-                    <div class="col-md-3" id="video">video</div>
-                    <div class="col-md-3" id="video">video</div>
-                    <div class="col-md-3" id="video">video</div>
-                    <div class="col-md-3" id="video">video</div>
-                    <div class="col-md-3" id="video">video</div>
-                    <div class="col-md-3" id="video">video</div>
-                    <div class="col-md-3" id="video">video</div>
-                    <div class="col-md-3" id="video">video</div>
-                    <div class="col-md-3" id="video">video</div>
-                </div>
                 <div class="col-md-4 wow fadeInRight" id="filter">
-                    <button type="button" class="btn btn-default">filter</button>
-                    <button type="button" class="btn btn-default">filter</button>
-                    <button type="button" class="btn btn-default">filter</button>
-                    <button type="button" class="btn btn-default">filter</button>
-                    <button type="button" class="btn btn-default">filter</button>
-                    <button type="button" class="btn btn-default">filter</button>
-                    <button type="button" class="btn btn-default">filter</button>
-                    <button type="button" class="btn btn-default">filter</button>
-                    <button type="button" class="btn btn-default">filter</button>
-                    <button type="button" class="btn btn-default">filter</button>
-                    <button type="button" class="btn btn-default">filter</button>
-                    <button type="button" class="btn btn-default">filter</button>
-                    <button type="button" class="btn btn-default">filter</button>
-                    <button type="button" class="btn btn-default">filter</button>
-                    <button type="button" class="btn btn-default">filter</button>
-                    <button type="button" class="btn btn-default">filter</button>
-                    <button type="button" class="btn btn-default">filter</button>
-                    <button type="button" class="btn btn-default">filter</button>
-                    <button type="button" class="btn btn-default">filter</button>
-                    <button type="button" class="btn btn-default">filter</button>
-                    <button type="button" class="btn btn-default">filter</button>
-                    <button type="button" class="btn btn-default">filter</button>
-                    <button type="button" class="btn btn-default">filter</button>
-                    <button type="button" class="btn btn-default">filter</button>
+                    <button id="showall" type="button" class="btn btn-danger btn-xs">Expand all</button>
+                    <button id="hideall" type="button" class="btn btn-danger btn-xs">Collapse all</button>
+                    <?php
+                      // Connect to database
+                      $videos = videos::singleton();
+
+                      // retrieve all nodes into array
+                      $videos->getNodes();
+                    ?>
+                </div>
+
+                <div id="info" class="col-sm-12 col-md-8 wow fadeInLeft">
+                    <iframe id="frame" src="" width="750" height="530"></iframe>
+                </div>
+
+                <div class="col-sm-8 pull-right" id="paginationdiv">
+                  <p>Displaying X of Y pages</p>
+                  <ul class="pager">
+                    <li id="First_page" class="disabled"><a href="1" class="nextpage btn btn-bg"><span class="glyphicon glyphicon-backward"></span></a></li>
+                    <li id="Pre_page" class="disabled"><a class="nextpage btn btn-bg" href="#"> <span class="glyphicon glyphicon-arrow-left"></span></a></li>
+                    <li id="Next_page" class="disabled"><a class="nextpage btn btn-bg" href="#"><span class="glyphicon glyphicon-arrow-right"></span></a></li>
+                    <li id="Last_page" class="disabled"><a href="#" class="nextpage btn btn-bg"><span class="glyphicon glyphicon-forward"></span></a></li> 
+                  </ul>
                 </div>
                 <div class="col-sm-12 col-md-8 wow fadeInLeft panel panel-default">
-                    <div class="panel-body">Detail panel</div>
+                    <div id='videoinfo' class="panel-body">Detail panel</div>
                 </div>
             </div>
         </div>
@@ -269,7 +261,6 @@
             </div>
         </div>
     </footer><!--/#footer-->
-
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
@@ -281,5 +272,7 @@
     <script src="js/jquery.inview.min.js"></script>
     <script src="js/wow.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/tree.js"> </script>    
+    <script src="js/videoplay.js"> </script>    
 </body>
 </html>
