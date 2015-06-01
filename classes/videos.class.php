@@ -62,10 +62,9 @@ Class Videos
 
     public function drawTree()
     {
-		echo "<div class='tree well'>
-		      <ul><li id='categories'><span id='0'><i class='glyphicon glyphicon-folder-open'></i>&nbsp&nbsp Video Collection</span>";
+		echo "<ul><li id='categories'><span id='0'><i class='glyphicon glyphicon-folder-open'></i>&nbsp&nbsp Video Collection</span>";
 		      $this->drawNodes(NULL, 0);
-		echo "</li></ul></div>";    	
+		echo "</li></ul>";
     }
 
     public function drawNodes($parent_id, $level)
@@ -82,7 +81,7 @@ Class Videos
 	            	} 
 	            	else 
 	            	{
-	              		echo "<li class='movie'><a href='#'><span id='" . $data[$id]['nodeId'] . "'> <i class='glyphicon glyphicon-film'></i> " . $data[$id]['nodeName']. "</span></a>";
+	              	  echo "<li class='movie'><a href='#'><span id='" . $data[$id]['nodeId'] . "'> <i class='glyphicon glyphicon-film'></i> " . $data[$id]['nodeName']. "</span></a>";
 	            	}
 	            	$this->drawNodes($id, $level + 1);
 	            echo "</li>";

@@ -2,7 +2,22 @@ var nodeId = 0;
 
 $(document).ready(function(){
   $('iframe').hide()
-  
+   $.ajax({
+    url: "generate_treeview.php",
+    type: "POST",
+    success: function(data)
+    {
+      $('.tree').html(data);
+
+      $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Expand this branch');
+      $('.tree li.parent_li').find(' > ul > li').hide();
+      $('#categories').find(' > ul > li').show();
+
+    },
+    error:function(data){alert(data);
+    }
+  });    
+
    $.ajax({
     url: "getvideos.php",
     type: "POST",
@@ -28,16 +43,9 @@ $(document).ready(function(){
 
 });
 
-// Collapse all branches
-
-$('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Expand this branch');
-$('.tree li.parent_li').find(' > ul > li').hide();
-$('#categories').find(' > ul > li').show();
-
-
 // change node condition and icon
 
-$('.tree li.parent_li > span').on('click', function (e) {
+$('body').on('click', '.tree li.parent_li > span', function (e) {
   var children = $(this).parent('li.parent_li').find(' > ul > li');
   if (children.is(":visible")) {
       children.hide('fast');
@@ -53,12 +61,11 @@ var ResultsperPage = 42;
 
 // When user clicks on a node
 
-$('.tree li span').click(function(){
+$('body').on('click', '.tree li span', function(){
 
   $('iframe').hide()
   nodeId = $(this).attr('id');
   var page = 1;
-
   $.ajax({
     url:"getvideos.php",
     type:"POST",   
