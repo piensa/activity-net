@@ -3,8 +3,9 @@ var nodeId = 0;
 $(document).ready(function(){
   $('iframe').hide()
    $.ajax({
-    url: "generate_treeview.php",
+    url: "http://www.activitynet.comule.com/generate_treeview.php",
     type: "POST",
+    dataType: 'jsonp',
     success: function(data)
     {
       $('.tree').html(data);
@@ -19,8 +20,9 @@ $(document).ready(function(){
   });    
 
    $.ajax({
-    url: "getvideos.php",
+    url: "http://www.activitynet.comule.com/getvideos.php",
     type: "POST",
+    dataType: 'jsonp',
     data: {nodeId: nodeId},
     success: function(data)
     {
@@ -67,8 +69,9 @@ $('body').on('click', '.tree li span', function(){
   nodeId = $(this).attr('id');
   var page = 1;
   $.ajax({
-    url:"getvideos.php",
-    type:"POST",   
+    url:"http://activitynet.comule.com/getvideos.php",
+    type:"POST",
+    dataType: 'jsonp',
     data:{nodeId : nodeId},
     success:function(data) {
       $('#info a').empty();
@@ -93,8 +96,9 @@ $('body').on('click', '.nextpage',function(e){
   var thispage = $(this).attr('href');
 
   $.ajax({
-  url:"getvideos.php",
-  type:"POST",   
+  url:"http://activitynet.comule.com/getvideos.php",
+  type:"POST",
+  dataType: 'jsonp',   
   data:{nodeId : nodeId, page : thispage},
   success:function(data) {
     $('#info a').empty();
