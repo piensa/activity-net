@@ -2,10 +2,9 @@ var nodeId = 0;
 
 $(document).ready(function(){
   $('iframe').hide()
-   $.ajax({
+  $.ajax({
     url: "http://www.activitynet.comule.com/generate_treeview.php",
     type: "POST",
-    dataType: 'jsonp',
     success: function(data)
     {
       $('.tree').html(data);
@@ -15,33 +14,13 @@ $(document).ready(function(){
       $('#categories').find(' > ul > li').show();
 
     },
-    error:function(data){alert(data);
+    error:function(data){
+      //$('.tree').text(data);
+      console.log(data);
     }
   });    
 
-   $.ajax({
-    url: "http://www.activitynet.comule.com/getvideos.php",
-    type: "POST",
-    dataType: 'jsonp',
-    data: {nodeId: nodeId},
-    success: function(data)
-    {
-      //$('#info').empty();
-      var videos = jQuery.parseJSON(data);    // Take all videos from JSON.
-
-      $.each(videos.videos.video, function(i, v){
-        $('#info').append('<a class="video" href="'+ v.videoId +'" title="'+ v.title +'" data-witdh = "640" data-height = "360"  href="'+ v.location +'"><img src="http://img.youtube.com/vi/'+ v.videoId +'/1.jpg"></a>'); 
-      });
-
-      var pages = Math.ceil(videos[0].size/ResultsperPage);
-      $('#paginationdiv p').empty().append('Page 1 of ' + pages);
-      $('#Prev_page, #Next_page, #Last_page, #First_page').removeClass('disabled');
-      $('#Next_page a').attr('href', '2');
-      $('#Last_page a').attr('href', pages);
-    },
-    error:function(data){alert(data);
-    }
-  });
+  getVideos(nodeId, 1);
 
 });
 
@@ -50,11 +29,11 @@ $(document).ready(function(){
 $('body').on('click', '.tree li.parent_li > span', function (e) {
   var children = $(this).parent('li.parent_li').find(' > ul > li');
   if (children.is(":visible")) {
-      children.hide('fast');
-      $(this).attr('title', 'Expand this branch').find(' > i').addClass("glyphicon-plus-sign").removeClass("glyphicon-minus-sign");
+    children.hide('fast');
+    $(this).attr('title', 'Expand this branch').find(' > i').addClass("glyphicon-plus-sign").removeClass("glyphicon-minus-sign");
   } else {
-      children.show('fast');
-      $(this).attr('title', 'Collapse this branch').find(' > i').addClass("glyphicon-minus-sign").removeClass("glyphicon-plus-sign");
+    children.show('fast');
+    $(this).attr('title', 'Collapse this branch').find(' > i').addClass("glyphicon-minus-sign").removeClass("glyphicon-plus-sign");
   }
   e.stopPropagation();
 });
@@ -68,27 +47,7 @@ $('body').on('click', '.tree li span', function(){
   $('iframe').hide()
   nodeId = $(this).attr('id');
   var page = 1;
-  $.ajax({
-    url:"http://activitynet.comule.com/getvideos.php",
-    type:"POST",
-    dataType: 'jsonp',
-    data:{nodeId : nodeId},
-    success:function(data) {
-      $('#info a').empty();
-      $('#frame').hide().attr('src', "");
-      var videos = jQuery.parseJSON(data);    // Take all videos from JSON.
-
-      $.each(videos.videos.video, function(i, v){
-        $('#info').append('<a class="video" href="'+ v.videoId +'" title="'+ v.title +'" data-witdh = "640" data-height = "360"  href="'+ v.location +'"><img src="http://img.youtube.com/vi/'+ v.videoId +'/1.jpg"></a>'); 
-      });
-
-      var pages = Math.ceil(videos[0].size/ResultsperPage);
-      CheckPage(page, pages);
-      $('#paginationdiv').show();
-    },
-    error:function(data){
-    }
-  });
+  getVideos(nodeId, page);
   return false;
 });
 
@@ -96,12 +55,11 @@ $('body').on('click', '.nextpage',function(e){
   var thispage = $(this).attr('href');
 
   $.ajax({
-  url:"http://activitynet.comule.com/getvideos.php",
-  type:"POST",
-  dataType: 'jsonp',   
-  data:{nodeId : nodeId, page : thispage},
-  success:function(data) {
-    $('#info a').empty();
+    url:"http://activitynet.comule.com/getvideos.php",
+    type:"POST",
+    data:{nodeId : nodeId, page : thispage},
+    success:function(data) {
+      $('#info a').empty();
     var videos = jQuery.parseJSON(data);    // Take all videos from JSON.
 
     $.each(videos.videos.video, function(i, v){
@@ -111,17 +69,16 @@ $('body').on('click', '.nextpage',function(e){
     var pages = Math.ceil(videos[0].size/ResultsperPage);
     CheckPage(thispage, pages);
   }
-  });
-
+});
   return false;
- });
+}); 
 
 $('body').on('click', '#showall',function(e){
   $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
   $('.tree li.parent_li').find(' > ul > li').show('fast')
   $('.tree li.parent_li i').addClass("glyphicon-minus-sign").removeClass("glyphicon-plus-sign");
   $('.tree li.movie i').addClass("glyphicon-film").removeClass("glyphicon-minus-sign");
-  });
+});
 
 $('body').on('click', '#hideall', function(e){
   $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Expand this branch');
@@ -162,5 +119,31 @@ function CheckPage(thispage, numberofpages)
     $('#Next_page').addClass('disabled', 'disabled');
     $('#Next_page a').attr('href', '#');
   }
+
+}
+
+function getVideos(nodeId, page)
+{
+  $.ajax({
+    url:"http://activitynet.comule.com/getvideos.php",
+    type:"POST",
+    data:{nodeId : nodeId},
+    success:function(data) {
+      $('#info a').empty();
+      $('#frame').hide().attr('src', "");
+      var videos = jQuery.parseJSON(data);    // Take all videos from JSON.
+
+      $.each(videos.videos.video, function(i, v){
+        $('#info').append('<a class="video" href="'+ v.videoId +'" title="'+ v.title +'" data-witdh = "640" data-height = "360"  href="'+ v.location +'"><img src="http://img.youtube.com/vi/'+ v.videoId +'/1.jpg"></a>'); 
+      });
+
+      var pages = Math.ceil(videos[0].size/ResultsperPage);
+      CheckPage(page, pages);
+      $('#paginationdiv').show();
+    },
+    error:function(data){
+    }
+  });
+
 
 }
