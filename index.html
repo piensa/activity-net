@@ -272,7 +272,26 @@
                     </div>
                     <div class="col-sm-8 col-md-offset-2">
                         <h2 class="section-title text-left wow fadeInUp animated">How was it made?</h2>
-                        <p class="text-left wow fadeInUp animated"> See our ACCV 2014 paper for detailed information.F.C. Heilbron, A. Thabet, J.C. Niebles and B. Ghanem. Camera Motion and Surrounding Scene Appearance as Context for Action Recognition. In ACCV, 2014.</p>
+                <p class="text-left wow fadeInUp animated">Our goal is to build an automatic system to retrieve videos depicting human activities.
+We heavily rely on the crowd and specifically, Amazon Mechanical Turk, to help acquire and annotate web videos. Our acquisition pipeline has three main steps: Collection, Filtering, and Temporal Localization.</p>
+
+<img src="images/flow.png" />
+
+<ul>
+<li>Collecting candidate videos.</li>
+We search candidate videos in the web for each element in our activity list (including expanded queries)
+
+<li>Filtering candidate videos.</li>
+Retrieved videos are verified by Amazon Mechanical Turk workers and clean out those videos which are not related with any intended activity.
+
+<li>Temporal annotation</li>
+Temporal localization provides starting and ending times in which activity is performed (multiple Amazon Mechanical Turk workers annotate a single video)
+
+</ul>
+
+
+         
+                        <p class="text-left wow fadeInUp animated"> More information can be found in our ACCV 2014 paper: F.C. Heilbron, A. Thabet, J.C. Niebles and B. Ghanem. Camera Motion and Surrounding Scene Appearance as Context for Action Recognition.</p>
                     </div>
                     </div><!--/.col-md-4-->
                 </div>
