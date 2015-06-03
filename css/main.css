@@ -481,6 +481,15 @@ ul.nostyle i {
   transition: background-color 400ms, background-color 400ms;
   position: relative;
 }
+.media-body {
+
+}
+.media-body img {
+  width: 130px;
+  height: 130px;
+}
+#profiles {
+ }
 
 /* GET IN TOUCH  */
 
