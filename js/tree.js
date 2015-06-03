@@ -38,7 +38,7 @@ $('body').on('click', '.tree li.parent_li > span', function (e) {
   e.stopPropagation();
 });
 
-var ResultsperPage = 42;
+var ResultsperPage = 16;
 
 // When user clicks on a node
 
@@ -46,6 +46,8 @@ $('body').on('click', '.tree li span', function(){
 
   $('iframe').hide()
   nodeId = $(this).attr('id');
+  $('.tree li span').removeClass('selected');
+  $(this).addClass('selected');
   var page = 1;
   getVideos(nodeId, page);
   return false;
@@ -66,8 +68,12 @@ $('body').on('click', '.nextpage',function(e){
       $('#info').append('<a class="video" title="'+ v.title +'" data-witdh = "640" data-height = "360"  href="'+ v.location +'"><img src="http://img.youtube.com/vi/'+ v.videoId +'/1.jpg"></a>'); 
     });
 
+    $('.tree li span').removeClass('selected');
+    $(this).addClass('selected');
+
     var pages = Math.ceil(videos[0].size/ResultsperPage);
     CheckPage(thispage, pages);
+    $('#videoinfo').empty();
   }
 });
   return false;
@@ -140,6 +146,7 @@ function getVideos(nodeId, page)
       var pages = Math.ceil(videos[0].size/ResultsperPage);
       CheckPage(page, pages);
       $('#paginationdiv').show();
+      $('#videoinfo').empty();
     },
     error:function(data){
     }
