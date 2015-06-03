@@ -1,5 +1,5 @@
 #info {
-	height: 662px;
+	height: 632px;
 	overflow: auto;
 }
 
@@ -7,6 +7,7 @@
     width: 120px;
     height: 80px;
     padding: 3px;
+    border-radius: 5px;
 }
 
 #info img:hover {
@@ -21,8 +22,9 @@
 
 #paginationdiv p {
     font-size: 14px;
+    font-family:'Roboto Condensed', Sans-Serif;
     font-weight: bold;
-    margin: 0;
+    margin-bottom: 25px;
 }
 
 .pager {
