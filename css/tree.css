@@ -54,3 +54,8 @@ span i{
    font-weight: bold;
    color:#7E120F
 }
+
+.tree li.movie .selected {
+   font-weight: bold;
+   color:#7E120F
+}
