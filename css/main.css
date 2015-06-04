@@ -610,6 +610,9 @@ ul.nostyle i {
   color: #666666;
   padding: 100px 0;
   background: url(../images/background-3.jpg);
+  background-attachment: fixed;
+  background-position: top center;
+  background-repeat: no-repeat; 
 }
 
 #about .pull-left i {
@@ -624,14 +627,16 @@ ul.nostyle i {
   position: relative;
 }
 .media-body {
-
+  margin-bottom: 30px;
 }
 .media-body img {
   width: 130px;
   height: 130px;
 }
-#profiles {
- }
+#made img {
+  border-radius: 5px;
+  padding: 10px 0 30px 0;
+}
 
 /* GET IN TOUCH  */
 
