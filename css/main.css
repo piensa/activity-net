@@ -243,6 +243,7 @@ ul.nostyle i {
   }
   #home-page .home-content .btn { 
     margin-bottom: 30px;
+    margin-left: 20%;  
   }
   #home-page .home-content .btn {
     font-family: 'Roboto Condensed', sans-serif;
@@ -271,11 +272,13 @@ ul.nostyle i {
     text-shadow: 1px 1px 1px #7E120F;
   }
   #home-page .home-content textarea {
+    width: 100%;
     margin-top: 0px;
     margin-bottom: 7px;
     padding-top: 10px;
+    padding-right: 15px;
     height: 106px;
-    font-size: .805em;
+    font-size: .74em;
     font-family: 'Droid Sans Mono';
     line-height: 1.5;  
     border: none;
@@ -283,13 +286,11 @@ ul.nostyle i {
     color: #FFF;
     background-color: rgba(51,51,51,0.5);
   }
-  #home-page .home-content #text-files {
-    padding-right: 0;
-  }
   #home-page .home-content #text-files .btn {
     background-color: rgba(51,51,51,0.5);
     float: right;
     margin-left: 7px;
+    margin-right: 0px;
     border-radius: 5px;
   }
   #home-page .home-content #text-files .btn:hover {
