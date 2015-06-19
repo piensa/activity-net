@@ -477,7 +477,7 @@ ul.nostyle i {
     width: 140px;
     height: 140px;
     color: #FFF;
-    background-color: #7E120F;
+
     font-size: 36px;
     font-weight: 700;
     text-align: center;
@@ -576,7 +576,7 @@ ul.nostyle i {
 
 #animated-number {  
   padding: 100px 0 70px;
-  background: #7E120F;
+  background: #666666;
   background-size: cover;
   color: #fff;
 }
@@ -642,7 +642,7 @@ ul.nostyle i {
 
 #get-in-touch {
   padding: 100px 0 50px;
-  background: #666666;
+  background-color: #7E120F;
   color: #fff;
   text-align: center;
 }
